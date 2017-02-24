@@ -1,12 +1,10 @@
 package fibgo
 
-import "fmt"
-
 // N return fibonacci number on N position
 // N should start from 0, otherwise panic will raised
 func N(n int) int {
 	if n < 0 {
-		panic(fmt.Sprintf("n should be greather than 0, but found %d", n))
+		panic("n should not less than 0")
 	}
 	if n < 2 {
 		return n
