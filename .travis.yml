@@ -2,11 +2,13 @@ language: go
 go:
   1.8
 
-install:
+before_install:
   - go get github.com/mattn/goveralls
   - go get -u github.com/alecthomas/gometalinter
   - gometalinter --install
-  - go get
+
+install:
+  - go get -d -t
 
 script:
   - go test -coverprofile=fibgo.coverprofile
