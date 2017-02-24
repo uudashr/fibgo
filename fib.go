@@ -1,4 +1,4 @@
-package fib
+package fibgo
 
 import "fmt"
 
