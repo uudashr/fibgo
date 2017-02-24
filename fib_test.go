@@ -9,8 +9,8 @@ import (
 func TestFibN(t *testing.T) {
 	data := []int{0, 1, 1, 2, 3, 5, 8, 13, 21, 34}
 	for n, v := range data {
-		if actual, expect := fib.N(n), v; actual != expect {
-			t.Error("actual:", actual, "expect:", expect, "n:", n)
+		if got, want := fib.N(n), v; got != want {
+			t.Error("got:", got, "want:", want, "n:", n)
 		}
 	}
 }
@@ -33,12 +33,12 @@ func TestFibN_panic(t *testing.T) {
 func TestFibSeq(t *testing.T) {
 	expect := []int{0, 1, 1, 2, 3, 5, 8, 13, 21, 34}
 	actual := fib.Seq(10)
-	if actualLen, expectedLen := len(actual), len(expect); actualLen != expectedLen {
-		t.Error("len(actual):", actualLen, "len(expect):", expectedLen)
+	if got, want := len(actual), len(expect); got != want {
+		t.Error("len(actual):", got, "len(expect):", want)
 	}
 	for i := 0; i < len(expect); i++ {
-		if actual[i] != expect[i] {
-			t.Error("actual[i]:", actual, "expect[i]:", expect, "i:", i)
+		if got, want := actual[i], expect[i]; got != want {
+			t.Error("actual[i]:", got, "expect[i]:", want, "i:", i)
 		}
 	}
 }
