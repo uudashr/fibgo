@@ -26,6 +26,13 @@ func ExampleN() {
 	// 34
 }
 
+func BenchmarkN(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		fib.N(50)
+	}
+}
+
 func TestN_panic(t *testing.T) {
 	fibN := func(n int) {
 		defer func() {

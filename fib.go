@@ -1,8 +1,8 @@
 package fibgo
 
-// N return fibonacci number on N position
-// N should start from 0, otherwise panic will raised
-func N(n int) int {
+var cache = make(map[int]int)
+
+func noCache(n int) int {
 	if n < 0 {
 		panic("n should not less than 0")
 	}
@@ -11,6 +11,19 @@ func N(n int) int {
 	}
 
 	return N(n-2) + N(n-1)
+}
+
+// N return fibonacci number on N position
+// N should start from 0, otherwise panic will raised
+func N(n int) int {
+	v, ok := cache[n]
+	if ok {
+		return v
+	}
+
+	v = noCache(n)
+	cache[n] = v
+	return v
 }
 
 // Seq return
