@@ -3,6 +3,9 @@ go:
   1.8
 
 install:
-  go get
+  - go get github.com/mattn/goveralls
+  - go get
 
-script: go test ./...
+script:
+  - go test -coverprofile=fibgo.coverprofile
+  - goveralls -coverprofile=fibgo.coverprofile -service=travis-ci

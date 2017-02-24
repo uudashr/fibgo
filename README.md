@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/uudashr/fibgo.svg?branch=master)](https://travis-ci.org/uudashr/fibgo)
+[![Coverage Status](https://coveralls.io/repos/github/uudashr/fibgo/badge.svg?branch=master)](https://coveralls.io/github/uudashr/fibgo?branch=master)
 
-# Fibonacci Project
+# Fibonacci
 
 Provide function for fibonacci operation
 
