@@ -26,7 +26,7 @@ func ExampleN() {
 	// 34
 }
 
-func TestFN_panic(t *testing.T) {
+func TestN_panic(t *testing.T) {
 	fibN := func(n int) {
 		defer func() {
 			if r := recover(); r == nil {
