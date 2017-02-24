@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/uudashr/fibgo.svg?branch=master)](https://travis-ci.org/uudashr/fibgo)
+
 # Fibonacci Project
 
 Provide function for fibonacci operation
@@ -12,7 +14,7 @@ Get fibonacci number of N
 ```go
 import (
   "fmt"
-  
+
   fib "github.com/uudashr/fibgo"
 )
 
