@@ -4,8 +4,11 @@ go:
 
 install:
   - go get github.com/mattn/goveralls
+  - go get -u github.com/alecthomas/gometalinter
+  - gometalinter --install
   - go get
 
 script:
   - go test -coverprofile=fibgo.coverprofile
   - goveralls -coverprofile=fibgo.coverprofile -service=travis-ci
+  - gometalinter --deadline=15s
