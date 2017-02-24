@@ -29,5 +29,13 @@ func NewHTTPHandler() http.Handler {
 		return c.JSON(http.StatusOK, Seq(limit))
 	})
 
+	e.GET("/numbers/:n", func(c echo.Context) error {
+		n, err := strconv.Atoi(c.Param("n"))
+		if err != nil {
+			return c.String(http.StatusBadRequest, "Invalid n (should number)")
+		}
+		return c.JSON(http.StatusOK, N(n))
+	})
+
 	return e
 }

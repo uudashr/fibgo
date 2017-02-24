@@ -2,6 +2,7 @@ package fibgo_test
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -36,7 +37,7 @@ func TestNumbers(t *testing.T) {
 
 		req, err := http.NewRequest(echo.GET, "/numbers", nil)
 		if err != nil {
-			t.Error("err:", err)
+			t.Error("err:", err, "case#:", i)
 			t.FailNow()
 		}
 
@@ -76,4 +77,60 @@ func TestNumbers(t *testing.T) {
 			}
 		}
 	}
+}
+
+func TestNumbers_N(t *testing.T) {
+	nums := []int{0, 1, 1, 2, 3, 5, 8, 13, 21, 34}
+
+	handler := fib.NewHTTPHandler()
+	for i, v := range nums {
+
+		req, err := http.NewRequest(echo.GET, fmt.Sprintf("/numbers/%d", i), nil)
+		if err != nil {
+			t.Error("err:", err, "i:", i)
+			t.FailNow()
+		}
+
+		rec := httptest.NewRecorder()
+		handler.ServeHTTP(rec, req)
+
+		if got, want := rec.Code, http.StatusOK; got != want {
+			t.Error("got:", got, "want:", want, "i:", i)
+			t.FailNow()
+		}
+
+		var result int
+		if err := json.NewDecoder(rec.Body).Decode(&result); err != nil {
+			t.Error("err:", err, "i:", i)
+			t.FailNow()
+		}
+
+		if got, want := result, v; got != want {
+			t.Error("got:", got, "want:", want, "i:", i)
+			t.FailNow()
+		}
+	}
+}
+
+func TestNumbers_N_error(t *testing.T) {
+	params := []string{"asdf", "872y34h", "2.4"}
+
+	handler := fib.NewHTTPHandler()
+	for i, p := range params {
+
+		req, err := http.NewRequest(echo.GET, fmt.Sprintf("/numbers/%s", p), nil)
+		if err != nil {
+			t.Error("err:", err, "case#:", i)
+			t.FailNow()
+		}
+
+		rec := httptest.NewRecorder()
+		handler.ServeHTTP(rec, req)
+
+		if got, want := rec.Code, http.StatusBadRequest; got != want {
+			t.Error("got:", got, "want:", want, "case#:", i)
+			t.FailNow()
+		}
+	}
+
 }
