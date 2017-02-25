@@ -4,7 +4,7 @@ go:
 
 before_install:
   - go get github.com/mattn/goveralls
-  - go get -u github.com/alecthomas/gometalinter
+  - go get -u gopkg.in/alecthomas/gometalinter.v1
   - gometalinter --install
 
 install:
