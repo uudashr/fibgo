@@ -8,7 +8,7 @@ before_install:
   - gometalinter --install
 
 install:
-  - go get -d -t
+  - go get ./... -d -t
 
 before_script:
   - go test -coverprofile=fibgo.coverprofile
