@@ -2,26 +2,24 @@ package fibgo
 
 var cache = make(map[int]int)
 
-func noCache(n int) int {
-	if n < 0 {
-		panic("n should not less than 0")
-	}
-	if n < 2 {
-		return n
-	}
-
-	return N(n-2) + N(n-1)
-}
-
 // N return fibonacci number on N position
 // N should start from 0, otherwise panic will raised
 func N(n int) int {
+	if n < 0 {
+		panic("n should not less than 0")
+	}
+
 	v, ok := cache[n]
 	if ok {
 		return v
 	}
 
-	v = noCache(n)
+	if n < 2 {
+		cache[n] = n
+		return n
+	}
+
+	v = N(n-2) + N(n-1)
 	cache[n] = v
 	return v
 }
