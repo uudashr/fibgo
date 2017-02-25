@@ -4,14 +4,14 @@ go:
 
 before_install:
   - go get github.com/mattn/goveralls
-  - go get -u github.com/alecthomas/gometalinter
+  - go get github.com/alecthomas/gometalinter
   - gometalinter --install
 
 install:
-  - go get -d -t ./...
+  - go get -v
 
 before_script:
-  - go test -coverprofile=fibgo.coverprofile
+  - go test -v -coverprofile=fibgo.coverprofile
   - gometalinter --deadline=15s
 
 script:
