@@ -34,6 +34,9 @@ func NewHTTPHandler() http.Handler {
 		if err != nil {
 			return c.String(http.StatusBadRequest, "Invalid n (should number)")
 		}
+		if n < 0 {
+			return c.String(http.StatusBadRequest, "Invalid n (should be non-negative)")
+		}
 		return c.JSON(http.StatusOK, N(n))
 	})
 

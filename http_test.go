@@ -112,7 +112,7 @@ func TestNumbers_N(t *testing.T) {
 	}
 }
 
-func TestNumbers_N_error(t *testing.T) {
+func TestNumbers_nonNumberN_error(t *testing.T) {
 	params := []string{"asdf", "872y34h", "2.4"}
 
 	handler := fib.NewHTTPHandler()
@@ -132,5 +132,26 @@ func TestNumbers_N_error(t *testing.T) {
 			t.FailNow()
 		}
 	}
+}
 
+func TestNumbers_negativeN_error(t *testing.T) {
+	params := []string{"-2", "-10", "-1"}
+
+	handler := fib.NewHTTPHandler()
+	for i, p := range params {
+
+		req, err := http.NewRequest(echo.GET, fmt.Sprintf("/numbers/%s", p), nil)
+		if err != nil {
+			t.Error("err:", err, "case#:", i)
+			t.FailNow()
+		}
+
+		rec := httptest.NewRecorder()
+		handler.ServeHTTP(rec, req)
+
+		if got, want := rec.Code, http.StatusBadRequest; got != want {
+			t.Error("got:", got, "want:", want, "case#:", i)
+			t.FailNow()
+		}
+	}
 }
