@@ -51,7 +51,12 @@ func TestNumbers(t *testing.T) {
 		handler.ServeHTTP(rec, req)
 
 		if got, want := rec.Code, code; got != want {
-			t.Error("got:", got, "want:", want, "case#:", i)
+			t.Error("got:", got, "want:", want, "limit:", limit)
+			t.FailNow()
+		}
+
+		if got, want := rec.Code, code; got != want {
+			t.Error("got:", got, "want:", want)
 			t.FailNow()
 		}
 
@@ -61,18 +66,18 @@ func TestNumbers(t *testing.T) {
 
 		var result []int
 		if err := json.NewDecoder(rec.Body).Decode(&result); err != nil {
-			t.Error("err:", err, "case#:", i)
+			t.Error("err:", err, "limit:", limit)
 			t.FailNow()
 		}
 
 		if got, want := len(result), len(expect); got != want {
-			t.Error("len(result):", got, "len(expect):", want, "case#:", i)
+			t.Error("len(result):", got, "len(expect):", want, "limit:", limit)
 			t.FailNow()
 		}
 
 		for ri, got := range result {
 			if want := expect[ri]; got != want {
-				t.Error("result[ri]:", got, "expect[ri]:", want, "ri:", i, "case#:", i)
+				t.Error("result[ri]:", got, "expect[ri]:", want, "ri:", i, "limit:", limit)
 				t.FailNow()
 			}
 		}
