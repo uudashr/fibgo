@@ -55,11 +55,6 @@ func TestNumbers(t *testing.T) {
 			t.FailNow()
 		}
 
-		if got, want := rec.Code, code; got != want {
-			t.Error("got:", got, "want:", want)
-			t.FailNow()
-		}
-
 		if rec.Code != http.StatusOK {
 			continue
 		}
