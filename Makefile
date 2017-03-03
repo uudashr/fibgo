@@ -16,8 +16,10 @@ install:
 	@go install ./...
 
 prepare-check:
-	@go get github.com/alecthomas/gometalinter
+	@go get -u github.com/alecthomas/gometalinter
 	@gometalinter --install
 
 check:
 	@gometalinter --deadline=15s
+
+check-all: prepare-check check
