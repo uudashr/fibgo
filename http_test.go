@@ -7,7 +7,6 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/labstack/echo"
 	fib "github.com/uudashr/fibgo"
 )
 
@@ -35,7 +34,7 @@ func TestNumbers(t *testing.T) {
 		expect := c.result
 		code := c.code
 
-		req, err := http.NewRequest(echo.GET, "/numbers", nil)
+		req, err := http.NewRequest(http.MethodGet, "/numbers", nil)
 		if err != nil {
 			t.Error("err:", err, "case#:", i)
 			t.FailNow()
@@ -85,7 +84,7 @@ func TestNumbers_N(t *testing.T) {
 	handler := fib.NewHTTPHandler()
 	for i, v := range nums {
 
-		req, err := http.NewRequest(echo.GET, fmt.Sprintf("/numbers/%d", i), nil)
+		req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("/numbers/%d", i), nil)
 		if err != nil {
 			t.Error("err:", err, "i:", i)
 			t.FailNow()
@@ -118,7 +117,7 @@ func TestNumbers_nonNumberN_error(t *testing.T) {
 	handler := fib.NewHTTPHandler()
 	for i, p := range params {
 
-		req, err := http.NewRequest(echo.GET, fmt.Sprintf("/numbers/%s", p), nil)
+		req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("/numbers/%s", p), nil)
 		if err != nil {
 			t.Error("err:", err, "case#:", i)
 			t.FailNow()
@@ -140,7 +139,7 @@ func TestNumbers_negativeN_error(t *testing.T) {
 	handler := fib.NewHTTPHandler()
 	for i, p := range params {
 
-		req, err := http.NewRequest(echo.GET, fmt.Sprintf("/numbers/%s", p), nil)
+		req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("/numbers/%s", p), nil)
 		if err != nil {
 			t.Error("err:", err, "case#:", i)
 			t.FailNow()
