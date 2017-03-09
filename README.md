@@ -60,3 +60,13 @@ func main() {
 	log.Println("Stopped err:", err)
 }
 ```
+
+
+## Running the fibgo service
+Fibgo provide the http service for fibonacci numbers.
+
+To run the service
+
+```shell
+$ fibgo-server --port 8080
+```
