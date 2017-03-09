@@ -41,9 +41,9 @@ func TestNumbers(t *testing.T) {
 		}
 
 		if limit != "" {
-			params := req.URL.Query()
-			params.Add("limit", limit)
-			req.URL.RawQuery = params.Encode()
+			q := req.URL.Query()
+			q.Add("limit", limit)
+			req.URL.RawQuery = q.Encode()
 		}
 
 		rec := httptest.NewRecorder()
