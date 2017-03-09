@@ -1,4 +1,8 @@
-IMAGE_NAME=fibgo
+install:
+	@go install ./...
+
+prepare-install:
+	@go get -v
 
 test:
 	@go test
@@ -6,20 +10,9 @@ test:
 test-all:
 	@go test -cover -bench .
 
-build-docker:
-	@docker build -t $(IMAGE_NAME) .
-
-prepare-install:
-	@go get -v
-
-install:
-	@go install ./...
+check:
+	@gometalinter --deadline=15s
 
 prepare-check:
 	@go get -u github.com/alecthomas/gometalinter
 	@gometalinter --install
-
-check:
-	@gometalinter --deadline=15s
-
-check-all: prepare-check check
