@@ -21,7 +21,7 @@ script:
   - gometalinter --deadline=15s
   - go install ./...
   - docker build -t uudashr/fibgo .
-  - docker run -d --name fibgo-server -p 127:0.0.1:8080:8080 uudashr/fibgo
+  - docker run -d --name fibgo-server -p 127.0.0.1:8080:8080 uudashr/fibgo
   - curl --fail http://127.0.0.1:8080/numbers || exit 1
 
 after_success:
