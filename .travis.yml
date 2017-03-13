@@ -20,14 +20,15 @@ script:
   - go test -v -coverprofile=fibgo.coverprofile
   - gometalinter --deadline=15s
   - go install ./...
-  - docker build -t uudashr/fibgo .
-  - docker run -d --name fibgo-server -p 127.0.0.1:8080:8080 uudashr/fibgo
+  - docker build -t fibgo .
+  - docker run -d --name fibgo-server -p 127.0.0.1:8080:8080 fibgo
   - curl --fail http://127.0.0.1:8080/numbers || exit 1
 
 after_success:
   - goveralls -coverprofile=fibgo.coverprofile -service=travis-ci
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker tag fibgo uudashr/fibgo
       docker push uudashr/fibgo;
     fi
 
