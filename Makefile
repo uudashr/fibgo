@@ -1,3 +1,5 @@
+IMAGE_NAME=fibgo
+
 install:
 	@go install ./...
 
@@ -16,3 +18,12 @@ check:
 prepare-check:
 	@go get -u github.com/alecthomas/gometalinter
 	@gometalinter --install
+
+docker-build:
+	@docker build -t $(IMAGE_NAME) .
+
+docker-run:
+	@docker run --rm -it $(IMAGE_NAME)
+
+docker-console:
+	@docker run --rm -it $(IMAGE_NAME) /bin/sh
