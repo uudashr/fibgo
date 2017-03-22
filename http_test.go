@@ -36,8 +36,7 @@ func TestNumbers(t *testing.T) {
 
 		req, err := http.NewRequest(http.MethodGet, "/numbers", nil)
 		if err != nil {
-			t.Error("err:", err, "case#:", i)
-			t.FailNow()
+			t.Fatal("err:", err, "case#:", i)
 		}
 
 		if limit != "" {
@@ -50,8 +49,7 @@ func TestNumbers(t *testing.T) {
 		handler.ServeHTTP(rec, req)
 
 		if got, want := rec.Code, code; got != want {
-			t.Error("got:", got, "want:", want, "limit:", limit)
-			t.FailNow()
+			t.Fatal("got:", got, "want:", want, "limit:", limit)
 		}
 
 		if rec.Code != http.StatusOK {
@@ -60,19 +58,16 @@ func TestNumbers(t *testing.T) {
 
 		var result []int
 		if err := json.NewDecoder(rec.Body).Decode(&result); err != nil {
-			t.Error("err:", err, "limit:", limit)
-			t.FailNow()
+			t.Fatal("err:", err, "limit:", limit)
 		}
 
 		if got, want := len(result), len(expect); got != want {
-			t.Error("len(result):", got, "len(expect):", want, "limit:", limit)
-			t.FailNow()
+			t.Fatal("len(result):", got, "len(expect):", want, "limit:", limit)
 		}
 
 		for ri, got := range result {
 			if want := expect[ri]; got != want {
-				t.Error("result[ri]:", got, "expect[ri]:", want, "ri:", i, "limit:", limit)
-				t.FailNow()
+				t.Fatal("result[ri]:", got, "expect[ri]:", want, "ri:", i, "limit:", limit)
 			}
 		}
 	}
@@ -86,27 +81,23 @@ func TestNumbers_N(t *testing.T) {
 
 		req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("/numbers/%d", i), nil)
 		if err != nil {
-			t.Error("err:", err, "i:", i)
-			t.FailNow()
+			t.Fatal("err:", err, "i:", i)
 		}
 
 		rec := httptest.NewRecorder()
 		handler.ServeHTTP(rec, req)
 
 		if got, want := rec.Code, http.StatusOK; got != want {
-			t.Error("got:", got, "want:", want, "i:", i)
-			t.FailNow()
+			t.Fatal("got:", got, "want:", want, "i:", i)
 		}
 
 		var result int
 		if err := json.NewDecoder(rec.Body).Decode(&result); err != nil {
-			t.Error("err:", err, "i:", i)
-			t.FailNow()
+			t.Fatal("err:", err, "i:", i)
 		}
 
 		if got, want := result, v; got != want {
-			t.Error("got:", got, "want:", want, "i:", i)
-			t.FailNow()
+			t.Fatal("got:", got, "want:", want, "i:", i)
 		}
 	}
 }
@@ -119,16 +110,14 @@ func TestNumbers_nonNumberN_error(t *testing.T) {
 
 		req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("/numbers/%s", p), nil)
 		if err != nil {
-			t.Error("err:", err, "case#:", i)
-			t.FailNow()
+			t.Fatal("err:", err, "case#:", i)
 		}
 
 		rec := httptest.NewRecorder()
 		handler.ServeHTTP(rec, req)
 
 		if got, want := rec.Code, http.StatusBadRequest; got != want {
-			t.Error("got:", got, "want:", want, "case#:", i)
-			t.FailNow()
+			t.Fatal("got:", got, "want:", want, "case#:", i)
 		}
 	}
 }
@@ -141,16 +130,14 @@ func TestNumbers_negativeN_error(t *testing.T) {
 
 		req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("/numbers/%s", p), nil)
 		if err != nil {
-			t.Error("err:", err, "case#:", i)
-			t.FailNow()
+			t.Fatal("err:", err, "case#:", i)
 		}
 
 		rec := httptest.NewRecorder()
 		handler.ServeHTTP(rec, req)
 
 		if got, want := rec.Code, http.StatusBadRequest; got != want {
-			t.Error("got:", got, "want:", want, "case#:", i)
-			t.FailNow()
+			t.Fatal("got:", got, "want:", want, "case#:", i)
 		}
 	}
 }
