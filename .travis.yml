@@ -18,7 +18,7 @@ before_script:
 
 script:
   - go test -v -coverprofile=fibgo.coverprofile
-  - gometalinter --deadline=15s
+  - gometalinter ./...
   - go install -v ./...
   - docker build -t fibgo .
   - docker run -d --name fibgo-server -p 127.0.0.1:8080:8080 fibgo

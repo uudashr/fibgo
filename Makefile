@@ -13,7 +13,7 @@ test-all:
 	@go test -cover -bench .
 
 check:
-	@gometalinter --deadline=15s
+	@gometalinter ./...
 
 prepare-check:
 	@go get -u github.com/alecthomas/gometalinter
