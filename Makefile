@@ -4,7 +4,7 @@ install:
 	@go install ./...
 
 prepare-install:
-	@go get -v
+	@go get -v -v ./...
 
 test:
 	@go test
