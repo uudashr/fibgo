@@ -1,5 +1,6 @@
 #!/bin/sh
 
+PATH=$GOPATH/bin
 PRJ=`git config --get remote.origin.url | sed 's/^https:\/\///' | sed 's/\.git$//'`
 BASE_DIR=`pwd`
 BUILD_DIR=build
@@ -9,7 +10,8 @@ rm -rf $BUILD_DIR
 
 # Install gometalinter
 if [ ! -x "$GOPATH/bin/gometalinter" ]; then
-  go get -u github.com/alecthomas/gometalinter && gometalinter --install
+  go get -u github.com/alecthomas/gometalinter
+  gometalinter --install
 fi
 
 # Copy source file
