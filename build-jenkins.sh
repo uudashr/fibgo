@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
-PATH=$PATH:$GOPATH/bin
-PRJ=`git config --get remote.origin.url | sed 's/^https:\/\///' | sed 's/\.git$//'`
-BASE_DIR=`pwd`
-BUILD_DIR=build
+export PATH=$PATH:$GOPATH/bin
+export PRJ=`git config --get remote.origin.url | sed 's/^https:\/\///' | sed 's/\.git$//'`
+export BASE_DIR=`pwd`
+export BUILD_DIR=build
 
 # Run fresh
 rm -rf $BUILD_DIR
