@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PATH=$PATH:$GOPATH/bin
 PRJ=`git config --get remote.origin.url | sed 's/^https:\/\///' | sed 's/\.git$//'`
