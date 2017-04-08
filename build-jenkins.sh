@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PATH=$GOPATH/bin
+PATH=$PATH:$GOPATH/bin
 PRJ=`git config --get remote.origin.url | sed 's/^https:\/\///' | sed 's/\.git$//'`
 BASE_DIR=`pwd`
 BUILD_DIR=build
