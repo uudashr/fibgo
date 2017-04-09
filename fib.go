@@ -24,7 +24,6 @@ func N(n int) int {
 	return v
 }
 
-// Seq return
 func Seq(length int) []int {
 	out := make([]int, length)
 	for i := 0; i < length; i++ {
