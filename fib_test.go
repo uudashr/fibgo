@@ -16,10 +16,6 @@ func TestN(t *testing.T) {
 	}
 }
 
-func TestThatFail(t *testing.T) {
-	t.Error("always fail")
-}
-
 func ExampleN() {
 	fmt.Println(fib.N(0))
 	fmt.Println(fib.N(6))
