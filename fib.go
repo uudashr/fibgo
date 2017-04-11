@@ -2,6 +2,11 @@ package fibgo
 
 var cache = make(map[int]int)
 
+type person struct {
+	name   string
+	active bool
+}
+
 // N return fibonacci number on N position
 // N should start from 0, otherwise panic will raised
 func N(n int) int {
