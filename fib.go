@@ -2,12 +2,6 @@ package fibgo
 
 var cache = make(map[int]int)
 
-// TODO uudashr: should remove this dummy mistakes
-type person struct {
-	name   string
-	active bool
-}
-
 // N return fibonacci number on N position
 // N should start from 0, otherwise panic will raised
 func N(n int) int {
@@ -30,6 +24,7 @@ func N(n int) int {
 	return v
 }
 
+// Seq will generate the fibonacci sequence
 func Seq(length int) []int {
 	out := make([]int, length)
 	for i := 0; i < length; i++ {
