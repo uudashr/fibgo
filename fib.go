@@ -2,6 +2,7 @@ package fibgo
 
 var cache = make(map[int]int)
 
+// TODO uudashr: should remove this dummy mistakes
 type person struct {
 	name   string
 	active bool
