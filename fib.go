@@ -30,10 +30,6 @@ func N(n int) int {
 	return v
 }
 
-func BrokenFunction error {
-	return 10
-}
-
 func Seq(length int) []int {
 	out := make([]int, length)
 	for i := 0; i < length; i++ {
