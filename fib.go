@@ -2,7 +2,7 @@ package fibgo
 
 var cache = make(map[int]int)
 
-// TODO uudashr: pass in cache in order to respect the pure function concept
+// TODO create fibonacci interface to enable, and cache enable should through this interface
 
 // N return fibonacci number on N position
 // N should start from 0, otherwise panic will raised
